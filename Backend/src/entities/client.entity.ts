@@ -22,14 +22,14 @@ class Client {
   @Column({ length: 50, unique: true })
   firstEmail: string;
 
-  @Column({ length: 50, unique: true, nullable: true })
-  secondaryEmail: string;
+  @Column({ length: 50, nullable: true })
+  secondaryEmail?: string;
 
   @Column({ length: 20, unique: true })
   mainPhone: string;
 
-  @Column({ length: 20, unique: true, nullable: true })
-  secondaryPhone: string;
+  @Column({ length: 20, nullable: true })
+  secondaryPhone?: string;
 
   @Column({ length: 120 })
   password: string;
@@ -49,10 +49,7 @@ class Client {
   @BeforeUpdate()
   @BeforeInsert()
   hashPassword() {
-    const isEncrypted = getRounds(this.password);
-    if (!isEncrypted) {
-      this.password = hashSync(this.password, 10);
-    }
+    this.password = hashSync(this.password, 10);
   }
 }
 

@@ -2,6 +2,9 @@ import "reflect-metadata";
 import "dotenv/config";
 import path from "path";
 import { DataSource, DataSourceOptions } from "typeorm";
+import { Client } from "./entities/client.entity";
+import { Contact } from "./entities/contact.entity";
+import { createMigrations1679511416368 } from "./migrations/1679511416368-createMigrations";
 
 const setDataSourceConfig = (): DataSourceOptions => {
   const entitiesPath: string = path.join(__dirname, "./entities/**.{js,ts}");
@@ -38,8 +41,8 @@ const setDataSourceConfig = (): DataSourceOptions => {
     database: process.env.PGDATABASE,
     logging: true,
     synchronize: false,
-    entities: [entitiesPath],
-    migrations: [migrationsPath],
+    entities: [Client, Contact],
+    migrations: [createMigrations1679511416368],
   };
 };
 

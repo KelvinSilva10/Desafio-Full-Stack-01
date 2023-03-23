@@ -20,13 +20,13 @@ class Contact {
   firstEmail: string;
 
   @Column({ length: 50, nullable: true })
-  secondaryEmail: string;
+  secondaryEmail?: string;
 
   @Column({ length: 20 })
   mainPhone: string;
 
   @Column({ length: 20, nullable: true })
-  secondaryPhone: string;
+  secondaryPhone?: string;
 
   @Column({ default: true })
   isActive: boolean;
