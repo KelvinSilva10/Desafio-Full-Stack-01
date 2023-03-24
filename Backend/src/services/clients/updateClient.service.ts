@@ -1,41 +1,32 @@
 import AppDataSource from "../../data-source";
-import { User } from "../../entities/user.entity";
+import { Client } from "../../entities/client.entity";
 import { AppError } from "../../errors/AppError";
-import { IUserUpdateRequest } from "../../interfaces/users";
-import { userWithoutPasswordSerializer } from "../../serializers/user.schemas";
+import { IClientUpdateRequest } from "../../interfaces/clients";
+import { clientWithoutPasswordSerializer } from "../../serializers/client.schemas";
 
 const updateClientService = async (
-  userIdParams: string,
-  userData: IUserUpdateRequest,
-  userId: string
+  clientIdParams: string,
+  clientData: IClientUpdateRequest,
+  clientId: string
 ) => {
-//   const userRepository = AppDataSource.getRepository(User);
+  const clientRepository = AppDataSource.getRepository(Client);
+  if (clientId !== clientIdParams) {
+    throw new AppError("You do not have permission to change other user", 403);
+  }
+  const findClient = await clientRepository.findOneBy({
+    id: clientIdParams,
+  });
 
-//   if (userId !== userIdParams) {
-//     throw new AppError("You do not have permission to change other user", 403);
-//   }
-
-//   const findUser = await userRepository.findOneBy({
-//     id: userIdParams,
-//   });
-
-//   if (userId !== userIdParams) {
-//     throw new AppError("You do not have permission to change other user", 403);
-//   }
-
-//   const updateUser = userRepository.create({
-//     ...findUser,
-//     ...userData,
-//   });
-
-//   await userRepository.save(updateUser);
-
-//   const updatedUserWithoutPassword =
-//     await userWithoutPasswordSerializer.validate(updateUser, {
-//       stripUnknown: true,
-//     });
-
-//   return updatedUserWithoutPassword;
+  const updateClient = clientRepository.create({
+    ...findClient,
+    ...clientData,
+  });
+  await clientRepository.save(updateClient);
+  const updatedClientWithoutPassword =
+    await clientWithoutPasswordSerializer.validate(updateClient, {
+      stripUnknown: true,
+    });
+  return updatedClientWithoutPassword;
 };
 
 export default updateClientService;

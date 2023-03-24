@@ -11,12 +11,18 @@ const ensureClientAlreadyExistsMiddleware = async (
 ) => {
   const clientRepository = AppDataSource.getRepository(Client);
 
-  const client = await clientRepository.findOneBy({
-    firstEmail: req.body.firstEmail,
-  });
+  const client = await clientRepository
+    .createQueryBuilder("client")
+    .where("client.firstEmail = :email", { email: req.body.firstEmail })
+    .orWhere("client.mainPhone = :phone", { phone: req.body.mainPhone })
+    .getOne();
 
   if (client) {
-    throw new AppError("This email already exists", 409);
+    if (client.firstEmail === req.body.firstEmail) {
+      throw new AppError("This email already exists", 409);
+    } else if (client.mainPhone === req.body.mainPhone) {
+      throw new AppError("This phone number already exists", 409);
+    }
   }
 
   next();

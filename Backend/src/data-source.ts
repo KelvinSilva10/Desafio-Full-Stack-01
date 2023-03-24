@@ -29,7 +29,7 @@ const setDataSourceConfig = (): DataSourceOptions => {
       type: "sqlite",
       database: ":memory:",
       synchronize: true,
-      entities: [entitiesPath],
+      entities: [Client, Contact],
     };
   }
   return {

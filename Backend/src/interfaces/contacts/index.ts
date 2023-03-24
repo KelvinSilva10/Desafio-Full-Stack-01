@@ -18,5 +18,13 @@ export interface IContactResponse {
   isActive: boolean;
   createdAt: Date;
   updatedAt: Date;
-  client: IClientResponse
+  client?: IClientResponse;
+}
+
+export interface IContactUpdateRequest {
+  name?: string;
+  firstEmail?: string;
+  secondaryEmail?: string;
+  mainPhone?: string;
+  secondaryPhone?: string;
 }

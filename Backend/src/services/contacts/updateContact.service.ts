@@ -1,40 +1,56 @@
+import validate from "uuid-validate";
 import AppDataSource from "../../data-source";
 import { Contact } from "../../entities/contact.entity";
+import { AppError } from "../../errors/AppError";
+import {
+  IContactResponse,
+  IContactUpdateRequest,
+} from "../../interfaces/contacts";
 // import { User } from "../../entities/user.entity";
 // import { AppError } from "../../errors/AppError";
 
 const updateContactService = async (
-  userIdParams: string,
-  userData,
-  userId: string
-) => {
-  const userRepository = AppDataSource.getRepository(Contact);
+  contactData: IContactUpdateRequest,
+  clientId: string,
+  contactId: string
+): Promise<IContactResponse> => {
+  const contactRepository = AppDataSource.getRepository(Contact);
 
-  //   if (userId !== userIdParams) {
-  //     throw new AppError("You do not have permission to change other user", 403);
-  //   }
+  if (!validate(contactId)) {
+    throw new AppError(
+      "Contact not found for the given client ID and contact ID",
+      404
+    );
+  }
 
-  //   const findUser = await userRepository.findOneBy({
-  //     id: userIdParams,
-  //   });
+  // find the contact by ID and the client by ID
+  const findContact = await contactRepository.findOne({
+    where: {
+      id: contactId,
+      client: { id: clientId },
+    },
+  });
 
-  //   if (userId !== userIdParams) {
-  //     throw new AppError("You do not have permission to change other user", 403);
-  //   }
+  console.log(clientId);
 
-  //   const updateUser = userRepository.create({
-  //     ...findUser,
-  //     ...userData,
-  //   });
+  if (!findContact) {
+    throw new AppError(
+      "Contact not found for the given client ID and contact ID",
+      404
+    );
+  }
 
-  //   await userRepository.save(updateUser);
+  const updateContact = contactRepository.create({
+    ...findContact,
+    ...contactData,
+  });
 
-  //   const updatedUserWithoutPassword =
-  //     await userWithoutPasswordSerializer.validate(updateUser, {
-  //       stripUnknown: true,
-  //     });
+  await contactRepository.save(updateContact);
 
-  //   return updatedUserWithoutPassword;
+  // Removendo o campo "client" da resposta
+  const { client, ...contactWithoutClient } = updateContact;
+
+  return contactWithoutClient;
 };
 
 export default updateContactService;

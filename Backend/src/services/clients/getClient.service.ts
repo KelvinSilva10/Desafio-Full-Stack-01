@@ -1,17 +1,18 @@
 import AppDataSource from "../../data-source";
+import { Client } from "../../entities/client.entity";
 
-const getClientService = async (idUser: string) => {
-  //   const userRepository = AppDataSource.getRepository(User);
+const getClientService = async (idclient: string) => {
+  const clientRepository = AppDataSource.getRepository(Client);
 
-  //   const user = await userRepository.findOne({
-  //     where: {
-  //       id: idUser,
-  //     },
-  //   });
+  const client = await clientRepository.findOne({
+    where: {
+      id: idclient,
+    },
+  });
 
-  //   const { password, ...userNotPassWord } = user;
+  const { password, ...clientNotPassWord } = client;
 
-  return;
+  return clientNotPassWord;
 };
 
 export default getClientService;

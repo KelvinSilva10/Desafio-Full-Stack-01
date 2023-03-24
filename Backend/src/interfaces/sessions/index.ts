@@ -1,4 +1,4 @@
 export interface ISessionRequest {
-  email: string;
+  firstEmail: string;
   password: string;
 }

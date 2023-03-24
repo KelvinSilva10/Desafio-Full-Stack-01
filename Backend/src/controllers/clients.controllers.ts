@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IClientRequest } from "../interfaces/clients";
+import { IClientRequest, IClientUpdateRequest } from "../interfaces/clients";
 import createClientService from "../services/clients/createClient.service";
 import deleteClientService from "../services/clients/deleteClient.service";
 import getClientService from "../services/clients/getClient.service";
@@ -19,28 +19,28 @@ const listClientsController = async (req: Request, res: Response) => {
 };
 
 const getClientController = async (req: Request, res: Response) => {
-  // const idClient = req.params.id;
-  // const clients = await getClientService(idClient);
-  // return res.json(clients);
+  const idClient = req.params.id;
+  const clients = await getClientService(idClient);
+  return res.json(clients);
 };
 
 const deleteClientController = async (req: Request, res: Response) => {
-  // const idClientDelete = req.params.id;
-  // const idClient = req.Client.id;
-  // await deleteClientService(idClientDelete, idClient);
-  // return res.status(204).json({});
+  const idClientDelete = req.params.id;
+  const idClient = String(req.client.id);
+  await deleteClientService(idClientDelete, idClient);
+  return res.status(204).json({});
 };
 
 const updateClientController = async (req: Request, res: Response) => {
-  // const ClientData: IClientUpdateRequest = req.body;
-  // const ClientIdParams = req.params.id;
-  // const ClientId = String(req.Client.id);
-  // const updateClient = await updateClientService(
-  //   ClientIdParams,
-  //   ClientData,
-  //   ClientId
-  // );
-  // return res.json(updateClient);
+  const clientData: IClientUpdateRequest = req.body;
+  const clientIdParams = req.params.id;
+  const clientId = String(req.client.id);
+  const updateClient = await updateClientService(
+    clientIdParams,
+    clientData,
+    clientId
+  );
+  return res.json(updateClient);
 };
 
 export {

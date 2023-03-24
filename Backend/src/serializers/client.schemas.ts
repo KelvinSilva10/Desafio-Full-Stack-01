@@ -11,7 +11,7 @@ const clientSerializer: SchemaOf<IClientRequest> = yup.object().shape({
     .max(20)
     .matches(
       /^(\([0-9]{2}\)\s)(9[0-9]{4}-[0-9]{4}|[0-9]{4}-[0-9]{4})$/,
-      "Telefone inválido"
+      "Invalid phone number"
     )
     .required(),
   secondaryPhone: yup
@@ -19,7 +19,7 @@ const clientSerializer: SchemaOf<IClientRequest> = yup.object().shape({
     .max(20)
     .matches(
       /^(\([0-9]{2}\)\s)(9[0-9]{4}-[0-9]{4}|[0-9]{4}-[0-9]{4})$/,
-      "Telefone inválido"
+      "Invalid phone number"
     )
     .notRequired(),
   password: yup.string().min(4).max(120).required(),

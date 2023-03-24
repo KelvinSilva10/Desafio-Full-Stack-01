@@ -23,3 +23,12 @@ export interface IClientLogin {
   email: string;
   password: string;
 }
+
+export interface IClientUpdateRequest {
+  name?: string;
+  firstEmail?: string;
+  secondaryEmail?: string;
+  mainPhone?: string;
+  secondaryPhone?: string;
+  password?: string;
+}

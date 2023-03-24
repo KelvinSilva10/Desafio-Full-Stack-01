@@ -8,13 +8,13 @@ import { compare } from "bcryptjs";
 import { Client } from "../../entities/client.entity";
 
 const createSessionService = async ({
-  email,
+  firstEmail,
   password,
 }: ISessionRequest): Promise<string> => {
   const clientRepository = AppDataSource.getRepository(Client);
 
   const client = await clientRepository.findOneBy({
-    firstEmail: email,
+    firstEmail: firstEmail,
   });
 
   if (!client) {
