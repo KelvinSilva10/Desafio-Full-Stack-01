@@ -10,7 +10,7 @@ import { Client } from "../../entities/client.entity";
 const createSessionService = async ({
   firstEmail,
   password,
-}: ISessionRequest): Promise<string> => {
+}: ISessionRequest): Promise<object> => {
   const clientRepository = AppDataSource.getRepository(Client);
 
   const client = await clientRepository.findOneBy({
@@ -42,7 +42,14 @@ const createSessionService = async ({
     }
   );
 
-  return token;
+  const { password: clientPassword, ...clientWithoutPassword } = client;
+
+  const response = {
+    accessToken: token,
+    user: clientWithoutPassword,
+  };
+
+  return response;
 };
 
 export default createSessionService;
