@@ -1,38 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# App DoIt 
 
-## Getting Started
+Um app onde você consegue gerenciar seus projetos, podendo criar projetos, concluir e apagar. Possui rotas autenticadas, modais, formulários de cadastro e login, skeletons, input de pesquisa. Totalmente estilzada com o Chakra UI.
 
-First, run the development server:
+URL: https://app-doit.vercel.app/
+OBS: Para que todas as rotas funcionem execute os comandos 3 e 4 abaixo.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<img src='https://my-portfolio-kappa-jade.vercel.app/static/media/App-Doit.8a4197ca67fe29fa4722.png'/> 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Tecnologias aplicadas: 
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+<li>React</li>
+<li>Typescript</li>
+<li>Javascript</li>
+<li>Rest Api</li>
+<li>Context</li>
+<li>React Router Dom</li>
+<li>React Hook Form</li>
+<li>Yup</li>
+<li>Axios</li>
+<li>Chakra UI</li>
+<li>Eslint</li>
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+<h2>Inicializando o projeto</h2>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1) Faça o clone do repositório com o comando `git clone` no terminal !
+2) No terminal dentro do repositório do projeto instale as dependências do projeto com o comando `yarn` !
+3) Faça o clone do repositório do json server (https://github.com/IvanBorba/json-server-doit) com o comando `git clone` no terminal para que todas as requisições funcionem corretamente !
+4) Execute o comando `yarn start` no terminal do json server para inicializar o servidor na port 3333 !
+5) Execute o comando `yarn start` no terminal do repositório deste projeto !
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
