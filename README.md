@@ -1,73 +1,62 @@
-Documentação da API
+# Projeto Contatos Full Stack
 
-## Tabela de Conteúdos
+Este é um projeto full stack para gerenciamento de contatos, utilizando as tecnologias PostgreSQL e React.
 
-- [Visão Geral](#1-visão-geral)
+## :mag_right: Descrição curta
 
-- [Diagrama ER](#2-diagrama-er)
+O projeto permite criar, visualizar, editar e excluir contatos.
 
-- [Documentação](#3-documentação)
+## :sparkles: Funcionalidades
 
-- [Rodando localmente](#4-rodando-localmente)
+- Criar contato
+- Visualizar contato
+- Editar contato
+- Excluir contato
 
-## 1. Visão Geral
+## :computer: Tecnologias utilizadas
 
-Visão geral do projeto, um pouco das tecnologias usadas.
+- Node.js
+- Express
+- PostgreSQL
+- React
 
-- **[NodeJs](https://nodejs.org/en/)**
+## :gear: Instalação
 
-- **[Express](https://expressjs.com/pt-br/)**
+1. Clone este repositório
+2. Navegue até a pasta do backend: `cd backend`
+3. Crie um arquivo `.env` com as configurações do banco de dados:
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=contatos
+DB_USER=seu_usuario
+DB_PASSWORD=sua_senha
 
-- **[TypeScript](https://www.typescriptlang.org/)**
+4. Instale as dependências: `npm install`
+5. Execute as migrações do banco de dados: `npm run migrate`
+6. Inicie o servidor: `npm start`
 
-- **[Postgres](https://www.postgresql.org/)**
+O servidor estará rodando em http://localhost:3000
 
-- **[TypeORM](https://typeorm.io/)**
+### Frontend
 
-- **[Yup](https://www.npmjs.com/package/yup)**
+1. Navegue até a pasta do frontend: `cd frontend`
+2. Instale as dependências: `npm install`
+3. Inicie o servidor: `npm start`
 
-A URL de desenvolvimento base da aplicação:
+O aplicativo estará rodando em http://localhost:3001
 
-https://localhost:3000
+## :rocket: Como usar
 
-## 2. Diagrama ER
+- Acesse o aplicativo em http://localhost:3001
+- Crie um novo contato
+- Visualize um contato existente
+- Edite um contato existente
+- Exclua um contato existente
 
-[ Voltar para o topo ](#tabela-de-conteúdos)
+## :handshake: Contribuição
 
-- **[Diagrama]**
+Este projeto foi criado como parte de um desafio técnico. Contribuições são bem-vindas, mas não são garantidas. Sinta-se livre para abrir um pull request ou uma issue se tiver sugestões ou melhorias a serem feitas.
 
-Diagrama ER da API definindo bem as relações entre as tabelas do banco de dados.
+## :page_facing_up: Licença
 
-## 3. Documentação
-
-[ Voltar para o topo ](#tabela-de-conteúdos)
-
-Link com a **[Documentação](http://localhost:3000/api-docs/#/)**
-
-## 4. Rodando localmente
-
-[ Voltar para o topo ](#tabela-de-conteúdos)
-
-### 4.1 Instale as dependências
-
-Clone o projeto em sua máquina e instale as dependências com o comando:
-
-```bash
-  yarn
-```
-
-### 4.2 Variáveis de Ambiente
-
-Em seguida, crie um arquivo .env, copiando o formato do arquivo .env.example:
-
-```bash
-  cp .env.example .env
-```
-
-### 4.3 Migrations
-
-Execute as migrations com o comando:
-
-```bash
-  yarn typeorm migration:run -d src/data-source.ts
-```
+Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para obter mais informações.
